@@ -386,13 +386,13 @@ export const LiveHeartRateSensorHUD: React.FC<LiveHeartRateSensorHUDProps> = ({ 
   };
 
   return (
-    <section className="neu-card rounded-3xl p-6 sm:p-7 space-y-6">
+    <section className="rounded-3xl bg-[#090d16] border border-slate-800 p-6 sm:p-7 space-y-6 shadow-xl text-white">
       
       {/* Sensor HUD Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/40 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <div className={`p-3 rounded-2xl bg-[#111319] border border-white/5 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.8)] transition-all ${
+            <div className={`p-3 rounded-2xl bg-[#111319] border border-slate-800 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.8)] transition-all ${
               isBeating ? 'scale-110 shadow-[0_0_16px_rgba(244,63,94,0.6)]' : ''
             }`}>
               <Heart className={`h-6 w-6 text-rose-500 fill-rose-500 transition-transform ${isBeating ? 'scale-125' : 'scale-100'}`} />
@@ -406,17 +406,17 @@ export const LiveHeartRateSensorHUD: React.FC<LiveHeartRateSensorHUDProps> = ({ 
 
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
-                <span>Live Physiological Intensity Monitor</span>
+              <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-2">
+                <span>Physiological Intensity Simulator</span>
               </h3>
-              <span className="neu-btn px-2 py-0.5 rounded text-[10px] font-mono text-lime-400 font-bold uppercase tracking-wider">
-                Real-Time Telemetry
+              <span className="px-2.5 py-0.5 rounded-md bg-lime-500/15 border border-lime-500/25 text-[10px] font-mono text-lime-400 font-bold uppercase tracking-wider">
+                Demo HUD
               </span>
             </div>
-            <p className="text-xs text-neutral-400 mt-0.5 flex items-center gap-1.5">
-              <span>Sensor:</span>
-              <span className="text-neutral-200 font-medium">
-                {isMicConnected ? 'Acoustic Mic Sensor (Active)' : 'Autonomic Algorithm Loop'}
+            <p className="text-xs text-slate-400 mt-0.5 flex items-center gap-1.5">
+              <span>Mode:</span>
+              <span className="text-slate-200 font-medium">
+                {isMicConnected ? 'Acoustic Mic Sensor (Active)' : 'Simulated Autonomic Loop'}
               </span>
               <span>·</span>
               <span>Max HR: {maxHr} bpm</span>
@@ -466,7 +466,7 @@ export const LiveHeartRateSensorHUD: React.FC<LiveHeartRateSensorHUDProps> = ({ 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         
         {/* Left Column: Big BPM Readout & Heart Rate Zone Card (4 cols) */}
-        <div className="lg:col-span-4 neu-card-sm rounded-3xl p-5 space-y-4 border border-white/5">
+        <div className="lg:col-span-4 rounded-3xl bg-slate-900/90 border border-slate-800 p-5 space-y-4">
           
           {/* Top Heart Rate Numerals */}
           <div className="flex items-baseline justify-between">
@@ -548,7 +548,7 @@ export const LiveHeartRateSensorHUD: React.FC<LiveHeartRateSensorHUDProps> = ({ 
         <div className="lg:col-span-8 space-y-4">
           
           {/* ECG Oscilloscope Screen */}
-          <div className="neu-inset rounded-2xl p-3 sm:p-4 relative overflow-hidden border border-black/60 shadow-[inset_4px_4px_12px_rgba(0,0,0,0.9)]">
+          <div className="rounded-2xl bg-black border border-slate-800 p-3 sm:p-4 relative overflow-hidden">
             
             {/* Top Oscilloscope Screen Metadata */}
             <div className="flex items-center justify-between text-[10px] font-mono text-neutral-400 mb-2 px-1">

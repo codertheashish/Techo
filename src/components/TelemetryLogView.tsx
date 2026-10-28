@@ -218,73 +218,73 @@ export const TelemetryLogView: React.FC<TelemetryLogViewProps> = ({
     <div className="space-y-8 pb-12">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/40 pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 pb-6">
         <div>
-          <div className="text-xs font-semibold text-lime-400 uppercase tracking-wider mb-1 drop-shadow-[0_0_8px_rgba(163,230,53,0.3)]">
+          <div className="text-xs font-bold text-lime-700 uppercase tracking-wider mb-1">
             Training Telemetry & Intensity Tracking
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-sm">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-950">
             Athletic Performance Logbook
           </h1>
-          <p className="text-sm text-neutral-400 mt-1">
+          <p className="text-sm text-slate-600 mt-1">
             Track subjective Rate of Perceived Exertion (RPE 1-10), TRIMP impulse, and cardiovascular strain.
           </p>
         </div>
 
         <button
           onClick={onCloseQuickLog}
-          className="neu-btn-primary inline-flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs font-bold whitespace-nowrap self-start sm:self-auto"
+          className="inline-flex items-center gap-2 rounded-xl bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold px-5 py-2.5 text-xs shadow-xs transition-all active:scale-95 whitespace-nowrap self-start sm:self-auto cursor-pointer"
         >
-          <Plus className="h-4 w-4" />
+          <Plus className="h-4 w-4 stroke-[2.5]" />
           <span>Record New Session</span>
         </button>
       </div>
 
-      {/* Metric summary strip in Neumorphic Cards */}
+      {/* Metric summary strip in Clean Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         
         {/* Total Volume */}
-        <div className="neu-card rounded-2xl p-5 shadow-[7px_7px_18px_rgba(0,0,0,0.65),-5px_-5px_12px_rgba(255,255,255,0.03)]">
-          <span className="text-xs text-neutral-400 font-semibold tracking-wide">Total Volume Recorded</span>
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-5 shadow-xs">
+          <span className="text-xs text-slate-600 font-semibold tracking-wide">Total Volume Recorded</span>
           <div className="flex items-baseline gap-1.5 mt-1.5">
-            <span className="text-3xl font-extrabold text-white font-mono tabular-nums drop-shadow-sm">
+            <span className="text-3xl font-black text-slate-950 font-mono tabular-nums">
               {(totalDuration / 60).toFixed(1)}
             </span>
-            <span className="text-xs text-neutral-400 font-mono">hours</span>
+            <span className="text-xs text-slate-500 font-mono">hours</span>
           </div>
-          <p className="text-xs text-neutral-500 mt-1">{logs.length} completed sessions</p>
+          <p className="text-xs text-slate-500 mt-1">{logs.length} completed sessions</p>
         </div>
 
         {/* Accumulated TRIMP */}
-        <div className="neu-card rounded-2xl p-5 shadow-[7px_7px_18px_rgba(0,0,0,0.65),-5px_-5px_12px_rgba(255,255,255,0.03)]">
-          <span className="text-xs text-neutral-400 font-semibold tracking-wide">Accumulated TRIMP Load</span>
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-5 shadow-xs">
+          <span className="text-xs text-slate-600 font-semibold tracking-wide">Accumulated TRIMP Load</span>
           <div className="flex items-baseline gap-1.5 mt-1.5">
-            <span className="text-3xl font-extrabold text-lime-400 font-mono tabular-nums drop-shadow-[0_0_8px_rgba(163,230,53,0.3)]">
+            <span className="text-3xl font-black text-lime-700 font-mono tabular-nums">
               {totalTrimp}
             </span>
-            <span className="text-xs text-neutral-400 font-mono">load units</span>
+            <span className="text-xs text-slate-500 font-mono">load units</span>
           </div>
-          <p className="text-xs text-lime-500/80 mt-1 font-semibold">Productive stimulus band</p>
+          <p className="text-xs text-lime-700 mt-1 font-semibold">Productive stimulus band</p>
         </div>
 
         {/* Mean Session RPE */}
-        <div className="neu-card rounded-2xl p-5 shadow-[7px_7px_18px_rgba(0,0,0,0.65),-5px_-5px_12px_rgba(255,255,255,0.03)]">
+        <div className="rounded-2xl bg-white border border-slate-200/90 p-5 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-neutral-400 font-semibold tracking-wide">Mean Session RPE (1-10)</span>
-            <div className="p-1 rounded-lg bg-[#111319] shadow-[inset_1px_1px_3px_rgba(0,0,0,0.6)]">
+            <span className="text-xs text-slate-600 font-semibold tracking-wide">Mean Session RPE (1-10)</span>
+            <div className="p-1 rounded-lg bg-slate-100 text-slate-700">
               <Gauge className={`h-4 w-4 ${avgRpeMeta.color}`} />
             </div>
           </div>
           <div className="flex items-baseline gap-2 mt-1.5">
-            <span className={`text-3xl font-extrabold font-mono tabular-nums ${avgRpeMeta.color}`}>
+            <span className={`text-3xl font-black font-mono tabular-nums ${avgRpeMeta.color}`}>
               {avgRpeStr}
             </span>
-            <span className="text-xs text-neutral-400 font-mono">/ 10</span>
-            <span className="text-xs font-bold text-neutral-200 ml-1">
+            <span className="text-xs text-slate-500 font-mono">/ 10</span>
+            <span className="text-xs font-bold text-slate-800 ml-1">
               · {avgRpeMeta.label}
             </span>
           </div>
-          <p className="text-xs text-neutral-400 mt-1 truncate">
+          <p className="text-xs text-slate-500 mt-1 truncate">
             {avgRpeMeta.zone}
           </p>
         </div>
