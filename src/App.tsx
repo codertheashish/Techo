@@ -7,13 +7,13 @@ import { FormVisionView } from './components/FormVisionView';
 import { RecoveryLabView } from './components/RecoveryLabView';
 import { TelemetryLogView } from './components/TelemetryLogView';
 import { CoachConsultView } from './components/CoachConsultView';
-import { ProjectZipDownloadModal } from './components/ProjectZipDownloadModal';
 import { AthleteProfile, TrainingLogEntry, WorkoutPlan } from './types';
 import { 
   defaultTodayWorkout, 
   initialAthlete, 
   initialTrainingLogs 
 } from './data/mockData';
+import { ArrowLeft } from 'lucide-react';
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState<NavTab>('dashboard');
@@ -44,7 +44,6 @@ export default function App() {
 
   const [isLiveModeActive, setIsLiveModeActive] = useState(false);
   const [isQuickLogOpen, setIsQuickLogOpen] = useState(false);
-  const [isDownloadZipOpen, setIsDownloadZipOpen] = useState(false);
 
   // Persist workout changes
   useEffect(() => {
@@ -66,19 +65,48 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#eef2f6] text-slate-800 flex flex-col font-sans selection:bg-lime-500 selection:text-white">
+    <div className="min-h-screen bg-[#f1f5f9] text-slate-900 flex flex-col font-sans selection:bg-lime-400 selection:text-slate-950">
       
-      {/* 3-Zone Top Bar Navbar */}
+      {/* 3-Zone Focused Navigation Bar (5 Core Sections) */}
       <Navbar
         currentTab={currentTab}
         onSelectTab={(tab) => setCurrentTab(tab)}
         onOpenQuickLog={() => setIsQuickLogOpen(true)}
         onStartLiveWorkout={handleStartLiveWorkout}
-        onOpenDownloadZip={() => setIsDownloadZipOpen(true)}
       />
 
       {/* Main Viewport Content Area */}
       <main className="flex-1 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+        
+        {/* Back navigation banner when inside secondary sub-tools */}
+        {currentTab === 'form-vision' && (
+          <div className="mb-6 flex items-center justify-between">
+            <button
+              onClick={() => setCurrentTab('dashboard')}
+              className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 px-4 py-2 text-xs font-bold text-slate-700 hover:text-slate-950 hover:bg-slate-50 transition-colors shadow-2xs"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              <span>Back to Dashboard</span>
+            </button>
+            <span className="text-xs font-semibold text-slate-500">
+              Biomechanical 3D & Computer Vision Lab
+            </span>
+          </div>
+        )}
+
+        {currentTab === 'daily-schedule' && (
+          <div className="mb-6">
+            <button
+              onClick={() => setCurrentTab('dashboard')}
+              className="inline-flex items-center gap-2 rounded-xl bg-white border border-slate-200 px-4 py-2 text-xs font-bold text-slate-700 hover:text-slate-950 hover:bg-slate-50 transition-colors shadow-2xs mb-4"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              <span>Back to Dashboard</span>
+            </button>
+            <DailyLifeScheduleView />
+          </div>
+        )}
+
         {currentTab === 'dashboard' && (
           <DashboardView
             athlete={athlete}
@@ -91,11 +119,8 @@ export default function App() {
             onOpenCoachConsult={() => setCurrentTab('coach-consult')}
             onOpenQuickLog={() => setIsQuickLogOpen(true)}
             onOpenDailySchedule={() => setCurrentTab('daily-schedule')}
-            onOpenDownloadZip={() => setIsDownloadZipOpen(true)}
           />
         )}
-
-        {currentTab === 'daily-schedule' && <DailyLifeScheduleView />}
 
         {currentTab === 'workout-engine' && (
           <WorkoutBuilderView
@@ -124,65 +149,53 @@ export default function App() {
         )}
       </main>
 
-      {/* Quiet, clean editorial footer adhering to Section 1.B */}
-      <footer className="border-t border-black/50 bg-[#111319] py-8 mt-12 text-xs text-neutral-500 shadow-[0_-4px_16px_rgba(0,0,0,0.5)]">
+      {/* Editorial, clean sports-technology footer */}
+      <footer className="border-t border-slate-200 bg-white py-8 mt-14 text-xs text-slate-500">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-extrabold text-neutral-300">Techo</span>
+            <span className="font-extrabold text-slate-900 text-sm">Techo</span>
             <span>·</span>
             <span>Intelligent Athletic Engine</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6 font-medium">
             <button
               onClick={() => setCurrentTab('dashboard')}
-              className="hover:text-neutral-300 transition-colors"
+              className="hover:text-slate-900 transition-colors cursor-pointer"
             >
               Dashboard
             </button>
             <button
-              onClick={() => setCurrentTab('daily-schedule')}
-              className="hover:text-neutral-300 transition-colors"
-            >
-              Daily Schedule
-            </button>
-            <button
-              onClick={() => setCurrentTab('form-vision')}
-              className="hover:text-neutral-300 transition-colors"
-            >
-              200+ Games & 3D AI
-            </button>
-            <button
               onClick={() => setCurrentTab('workout-engine')}
-              className="hover:text-neutral-300 transition-colors"
+              className="hover:text-slate-900 transition-colors cursor-pointer"
             >
               Workout Engine
             </button>
             <button
               onClick={() => setCurrentTab('recovery-lab')}
-              className="hover:text-neutral-300 transition-colors"
+              className="hover:text-slate-900 transition-colors cursor-pointer"
             >
-              Recovery Science
+              Recovery Lab
             </button>
             <button
-              onClick={() => setIsDownloadZipOpen(true)}
-              className="text-lime-400 hover:text-lime-300 font-semibold transition-colors flex items-center gap-1"
+              onClick={() => setCurrentTab('telemetry-logs')}
+              className="hover:text-slate-900 transition-colors cursor-pointer"
             >
-              Export Project ZIP
+              Training Logs
+            </button>
+            <button
+              onClick={() => setCurrentTab('coach-consult')}
+              className="hover:text-slate-900 transition-colors cursor-pointer"
+            >
+              AI Coach
             </button>
           </div>
 
           <div>
-            © {new Date().getFullYear()} Techo. All rights reserved.
+            © {new Date().getFullYear()} Techo. High-Performance Athletic Science.
           </div>
         </div>
       </footer>
-
-      {/* Project ZIP Download Modal */}
-      <ProjectZipDownloadModal
-        isOpen={isDownloadZipOpen}
-        onClose={() => setIsDownloadZipOpen(false)}
-      />
 
     </div>
   );

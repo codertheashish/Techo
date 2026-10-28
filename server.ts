@@ -1,4 +1,5 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import type { Request, Response } from 'express';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
@@ -11,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true, limit: '20mb' }));
@@ -928,8 +929,8 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, () => {
-    console.log(`Techo server running on port ${PORT}`);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Techo server running on http://0.0.0.0:${PORT}`);
   });
 }
 

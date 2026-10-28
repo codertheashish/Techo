@@ -1,5 +1,5 @@
-import React from 'react';
-import { Plus, Zap, Download } from 'lucide-react';
+import React, { useState } from 'react';
+import { Plus, Zap, Activity, Menu, X } from 'lucide-react';
 
 export type NavTab = 
   | 'dashboard'
@@ -15,7 +15,6 @@ interface NavbarProps {
   onSelectTab: (tab: NavTab) => void;
   onOpenQuickLog: () => void;
   onStartLiveWorkout: () => void;
-  onOpenDownloadZip?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -23,119 +22,104 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSelectTab,
   onOpenQuickLog,
   onStartLiveWorkout,
-  onOpenDownloadZip,
 }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Map sub-views to their parent active main tab for highlight
+  const isDashboardActive = currentTab === 'dashboard' || currentTab === 'daily-schedule' || currentTab === 'form-vision';
+
+  const handleNavClick = (tab: NavTab) => {
+    onSelectTab(tab);
+    setMobileMenuOpen(false);
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-300/70 bg-[#eef2f6]/95 backdrop-blur-md shadow-[0_4px_16px_rgba(166,180,200,0.35)]">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-md shadow-xs">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         
-        {/* Zone 1: Single text element wordmark with subtle embossed glow */}
-        <button
-          onClick={() => onSelectTab('dashboard')}
-          className="group flex items-center gap-2 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 rounded-sm"
-        >
-          <span className="text-xl font-extrabold tracking-tight text-slate-900 group-hover:text-lime-700 transition-colors drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
-            Techo
-          </span>
-        </button>
-
-        {/* Zone 2: Neumorphic Segmented Navigation Bar */}
-        <nav className="hidden md:flex items-center gap-1.5 p-1 rounded-xl bg-[#e5ebf2] shadow-[inset_2px_2px_5px_rgba(166,180,200,0.6),inset_-2px_-2px_5px_rgba(255,255,255,0.95)] border border-white/70 text-xs font-semibold">
+        {/* Zone 1: Brand Wordmark with subtle athletic accent */}
+        <div className="flex items-center gap-3">
           <button
-            onClick={() => onSelectTab('dashboard')}
+            onClick={() => handleNavClick('dashboard')}
+            className="group flex items-center gap-2.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 rounded-md"
+          >
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 text-lime-400 font-black text-base shadow-sm">
+              <Activity className="h-5 w-5" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-black tracking-tight text-slate-950 group-hover:text-lime-700 transition-colors leading-none">
+                Techo
+              </span>
+              <span className="text-[10px] font-semibold text-slate-500 tracking-wider uppercase mt-0.5">
+                Athletic Engine
+              </span>
+            </div>
+          </button>
+        </div>
+
+        {/* Zone 2: Focused 5-Section Desktop Navigation (Clean, unboxed links with active indicator) */}
+        <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/80 text-xs font-semibold">
+          <button
+            onClick={() => handleNavClick('dashboard')}
             className={`px-3.5 py-1.5 rounded-lg transition-all ${
-              currentTab === 'dashboard'
-                ? 'bg-[#f0f4f9] text-lime-700 shadow-[3px_3px_8px_rgba(166,180,200,0.5),-2px_-2px_6px_rgba(255,255,255,0.95)] border border-white font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+              isDashboardActive
+                ? 'bg-white text-slate-950 shadow-xs font-bold border border-slate-200/60'
+                : 'text-slate-600 hover:text-slate-950'
             }`}
           >
             Dashboard
           </button>
 
           <button
-            onClick={() => onSelectTab('daily-schedule')}
-            className={`px-3.5 py-1.5 rounded-lg transition-all ${
-              currentTab === 'daily-schedule'
-                ? 'bg-[#f0f4f9] text-lime-700 shadow-[3px_3px_8px_rgba(166,180,200,0.5),-2px_-2px_6px_rgba(255,255,255,0.95)] border border-white font-bold'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Daily Schedule
-          </button>
-
-          <button
-            onClick={() => onSelectTab('form-vision')}
-            className={`px-3.5 py-1.5 rounded-lg transition-all ${
-              currentTab === 'form-vision'
-                ? 'bg-[#f0f4f9] text-lime-700 shadow-[3px_3px_8px_rgba(166,180,200,0.5),-2px_-2px_6px_rgba(255,255,255,0.95)] border border-white font-bold'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            200+ Games & 3D AI
-          </button>
-
-          <button
-            onClick={() => onSelectTab('workout-engine')}
+            onClick={() => handleNavClick('workout-engine')}
             className={`px-3.5 py-1.5 rounded-lg transition-all ${
               currentTab === 'workout-engine'
-                ? 'bg-[#f0f4f9] text-lime-700 shadow-[3px_3px_8px_rgba(166,180,200,0.5),-2px_-2px_6px_rgba(255,255,255,0.95)] border border-white font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white text-slate-950 shadow-xs font-bold border border-slate-200/60'
+                : 'text-slate-600 hover:text-slate-950'
             }`}
           >
             Workout Engine
           </button>
 
           <button
-            onClick={() => onSelectTab('recovery-lab')}
+            onClick={() => handleNavClick('recovery-lab')}
             className={`px-3.5 py-1.5 rounded-lg transition-all ${
               currentTab === 'recovery-lab'
-                ? 'bg-[#f0f4f9] text-lime-700 shadow-[3px_3px_8px_rgba(166,180,200,0.5),-2px_-2px_6px_rgba(255,255,255,0.95)] border border-white font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white text-slate-950 shadow-xs font-bold border border-slate-200/60'
+                : 'text-slate-600 hover:text-slate-950'
             }`}
           >
             Recovery Lab
           </button>
 
           <button
-            onClick={() => onSelectTab('telemetry-logs')}
+            onClick={() => handleNavClick('telemetry-logs')}
             className={`px-3.5 py-1.5 rounded-lg transition-all ${
               currentTab === 'telemetry-logs'
-                ? 'bg-[#f0f4f9] text-lime-700 shadow-[3px_3px_8px_rgba(166,180,200,0.5),-2px_-2px_6px_rgba(255,255,255,0.95)] border border-white font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white text-slate-950 shadow-xs font-bold border border-slate-200/60'
+                : 'text-slate-600 hover:text-slate-950'
             }`}
           >
-            Telemetry & Logs
+            Training Logs
           </button>
 
           <button
-            onClick={() => onSelectTab('coach-consult')}
+            onClick={() => handleNavClick('coach-consult')}
             className={`px-3.5 py-1.5 rounded-lg transition-all ${
               currentTab === 'coach-consult'
-                ? 'bg-[#f0f4f9] text-lime-700 shadow-[3px_3px_8px_rgba(166,180,200,0.5),-2px_-2px_6px_rgba(255,255,255,0.95)] border border-white font-bold'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-white text-slate-950 shadow-xs font-bold border border-slate-200/60'
+                : 'text-slate-600 hover:text-slate-950'
             }`}
           >
-            Coach Techo
+            AI Coach
           </button>
         </nav>
 
-        {/* Zone 3: Neumorphic tactile action buttons */}
+        {/* Zone 3: High-contrast athletic action buttons */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {onOpenDownloadZip && (
-            <button
-              onClick={onOpenDownloadZip}
-              className="neu-btn inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 hover:text-lime-700 whitespace-nowrap bg-[#f0f4f9]"
-              title="Download full project zip archive"
-            >
-              <Download className="h-3.5 w-3.5 text-lime-600" />
-              <span className="hidden sm:inline">Export ZIP</span>
-              <span className="sm:hidden">ZIP</span>
-            </button>
-          )}
-
           <button
             onClick={onStartLiveWorkout}
-            className="neu-btn hidden lg:inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold text-slate-700 hover:text-lime-700 whitespace-nowrap"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-slate-950 transition-colors shadow-2xs whitespace-nowrap"
             title="Start live interactive workout timer with voice coaching"
           >
             <Zap className="h-3.5 w-3.5 text-lime-600" />
@@ -144,61 +128,101 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button
             onClick={onOpenQuickLog}
-            className="neu-btn-primary inline-flex items-center gap-1.5 rounded-xl px-3 sm:px-4 py-2 text-xs font-bold whitespace-nowrap shadow-md"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold px-3.5 sm:px-4 py-2 text-xs shadow-xs transition-all whitespace-nowrap active:scale-95"
           >
-            <Plus className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Log Workout</span>
-            <span className="sm:hidden">Log</span>
+            <Plus className="h-3.5 w-3.5 stroke-[2.5]" />
+            <span>Log Workout</span>
+          </button>
+
+          {/* Mobile hamburger menu toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-xl text-slate-600 hover:text-slate-950 hover:bg-slate-100 transition-colors"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
       </div>
 
-      {/* Mobile sub-nav strip */}
-      <div className="flex md:hidden overflow-x-auto border-t border-slate-300/60 bg-[#e5ebf2] px-4 py-2 gap-3 text-xs font-medium scrollbar-none shadow-inner">
-        <button
-          onClick={() => onSelectTab('dashboard')}
-          className={`px-2.5 py-1 rounded-md whitespace-nowrap transition-colors ${currentTab === 'dashboard' ? 'bg-[#f0f4f9] text-lime-700 font-bold shadow-sm' : 'text-slate-600'}`}
-        >
-          Dashboard
-        </button>
-        <button
-          onClick={() => onSelectTab('daily-schedule')}
-          className={`px-2.5 py-1 rounded-md whitespace-nowrap transition-colors ${currentTab === 'daily-schedule' ? 'bg-[#f0f4f9] text-lime-700 font-bold shadow-sm' : 'text-slate-600'}`}
-        >
-          Daily Schedule
-        </button>
-        <button
-          onClick={() => onSelectTab('form-vision')}
-          className={`px-2.5 py-1 rounded-md whitespace-nowrap transition-colors ${currentTab === 'form-vision' ? 'bg-[#f0f4f9] text-lime-700 font-bold shadow-sm' : 'text-slate-600'}`}
-        >
-          200+ Games & 3D AI
-        </button>
-        <button
-          onClick={() => onSelectTab('workout-engine')}
-          className={`px-2.5 py-1 rounded-md whitespace-nowrap transition-colors ${currentTab === 'workout-engine' ? 'bg-[#f0f4f9] text-lime-700 font-bold shadow-sm' : 'text-slate-600'}`}
-        >
-          Workouts
-        </button>
-        <button
-          onClick={() => onSelectTab('recovery-lab')}
-          className={`px-2.5 py-1 rounded-md whitespace-nowrap transition-colors ${currentTab === 'recovery-lab' ? 'bg-[#f0f4f9] text-lime-700 font-bold shadow-sm' : 'text-slate-600'}`}
-        >
-          Recovery
-        </button>
-        <button
-          onClick={() => onSelectTab('telemetry-logs')}
-          className={`px-2.5 py-1 rounded-md whitespace-nowrap transition-colors ${currentTab === 'telemetry-logs' ? 'bg-[#f0f4f9] text-lime-700 font-bold shadow-sm' : 'text-slate-600'}`}
-        >
-          Telemetry
-        </button>
-        <button
-          onClick={() => onSelectTab('coach-consult')}
-          className={`px-2.5 py-1 rounded-md whitespace-nowrap transition-colors ${currentTab === 'coach-consult' ? 'bg-[#f0f4f9] text-lime-700 font-bold shadow-sm' : 'text-slate-600'}`}
-        >
-          Coach
-        </button>
-      </div>
+      {/* Mobile Drawer Navigation (responsive for tablets & phones) */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden border-t border-slate-200 bg-white px-4 py-3 shadow-lg space-y-1 animate-in slide-in-from-top-2 duration-150">
+          <button
+            onClick={() => handleNavClick('dashboard')}
+            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
+              isDashboardActive ? 'bg-slate-100 text-slate-950 font-bold' : 'text-slate-600 hover:bg-slate-50'
+            }`}
+          >
+            <span>Dashboard</span>
+            {isDashboardActive && <span className="h-1.5 w-1.5 rounded-full bg-lime-500" />}
+          </button>
+
+          <button
+            onClick={() => handleNavClick('workout-engine')}
+            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
+              currentTab === 'workout-engine' ? 'bg-slate-100 text-slate-950 font-bold' : 'text-slate-600 hover:bg-slate-50'
+            }`}
+          >
+            <span>Workout Engine</span>
+            {currentTab === 'workout-engine' && <span className="h-1.5 w-1.5 rounded-full bg-lime-500" />}
+          </button>
+
+          <button
+            onClick={() => handleNavClick('recovery-lab')}
+            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
+              currentTab === 'recovery-lab' ? 'bg-slate-100 text-slate-950 font-bold' : 'text-slate-600 hover:bg-slate-50'
+            }`}
+          >
+            <span>Recovery Lab</span>
+            {currentTab === 'recovery-lab' && <span className="h-1.5 w-1.5 rounded-full bg-lime-500" />}
+          </button>
+
+          <button
+            onClick={() => handleNavClick('telemetry-logs')}
+            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
+              currentTab === 'telemetry-logs' ? 'bg-slate-100 text-slate-950 font-bold' : 'text-slate-600 hover:bg-slate-50'
+            }`}
+          >
+            <span>Training Logs</span>
+            {currentTab === 'telemetry-logs' && <span className="h-1.5 w-1.5 rounded-full bg-lime-500" />}
+          </button>
+
+          <button
+            onClick={() => handleNavClick('coach-consult')}
+            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
+              currentTab === 'coach-consult' ? 'bg-slate-100 text-slate-950 font-bold' : 'text-slate-600 hover:bg-slate-50'
+            }`}
+          >
+            <span>AI Coach</span>
+            {currentTab === 'coach-consult' && <span className="h-1.5 w-1.5 rounded-full bg-lime-500" />}
+          </button>
+
+          <div className="pt-2 border-t border-slate-100 flex items-center gap-2">
+            <button
+              onClick={() => {
+                onStartLiveWorkout();
+                setMobileMenuOpen(false);
+              }}
+              className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 py-2 text-xs font-semibold text-slate-700"
+            >
+              <Zap className="h-3.5 w-3.5 text-lime-600" />
+              <span>Live Session</span>
+            </button>
+            <button
+              onClick={() => {
+                onOpenQuickLog();
+                setMobileMenuOpen(false);
+              }}
+              className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-lime-500 py-2 text-xs font-bold text-slate-950"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              <span>Log Workout</span>
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

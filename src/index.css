@@ -136,71 +136,25 @@ input[type="range"]::-webkit-slider-thumb:hover {
   background: #94a3b8;
 }
 
-/* Global Text & Element Contrast Calibration for White Neumorphism */
-.neu-card h1, .neu-card h2, .neu-card h3, .neu-card h4 {
+/* Clean Athletic Surface Utilities */
+.card-athletic {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
   color: #0f172a;
 }
-.neu-card .text-white {
-  color: #0f172a !important;
-}
-.neu-card .text-neutral-100 {
-  color: #1e293b !important;
-}
-.neu-card .text-neutral-200 {
-  color: #334155 !important;
-}
-.neu-card .text-neutral-300 {
-  color: #475569 !important;
-}
-.neu-card .text-neutral-400 {
-  color: #64748b !important;
-}
-.neu-card .text-neutral-500 {
-  color: #94a3b8 !important;
-}
-.neu-card .border-black\/40, .neu-card .border-black\/50, .neu-card .border-black\/30 {
-  border-color: rgba(203, 213, 225, 0.6) !important;
-}
-.neu-card .divide-black\/40 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgba(203, 213, 225, 0.6) !important;
-}
-.neu-card .border-white\/5, .neu-card .border-white\/10 {
-  border-color: rgba(255, 255, 255, 0.9) !important;
+
+.card-athletic-dark {
+  background: #090d16;
+  border: 1px solid rgba(30, 41, 59, 0.9);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  color: #f8fafc;
 }
 
-.neu-inset .text-white {
-  color: #0f172a !important;
+/* Light / dark card header contrast helper */
+.card-athletic h1, .card-athletic h2, .card-athletic h3, .card-athletic h4 {
+  color: #0f172a;
 }
-.neu-inset .text-neutral-200, .neu-inset .text-neutral-300 {
-  color: #334155 !important;
-}
-.neu-inset .text-neutral-400 {
-  color: #64748b !important;
-}
-
-.neu-inset-subtle .text-white {
-  color: #0f172a !important;
-}
-.neu-inset-subtle .text-neutral-200, .neu-inset-subtle .text-neutral-300 {
-  color: #334155 !important;
-}
-.neu-inset-subtle .text-neutral-400 {
-  color: #64748b !important;
-}
-
-/* Energetic Lime Text Contrast on Light Backgrounds */
-.text-lime-400 {
-  color: #4d7c0f !important;
-}
-.text-amber-400 {
-  color: #b45309 !important;
-}
-.text-cyan-400 {
-  color: #0369a1 !important;
-}
-.text-rose-400, .text-rose-500 {
-  color: #be123c !important;
-}
-.text-emerald-400 {
-  color: #047857 !important;
+.card-athletic-dark h1, .card-athletic-dark h2, .card-athletic-dark h3, .card-athletic-dark h4 {
+  color: #ffffff;
 }

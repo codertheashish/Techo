@@ -108,27 +108,28 @@ export const RecoveryLabView: React.FC = () => {
   return (
     <div className="space-y-8 pb-12">
       
-      {/* Top Banner with Image and Neumorphic Soft Bevel */}
-      <section className="neu-card relative overflow-hidden rounded-3xl p-1 shadow-[8px_8px_24px_rgba(0,0,0,0.7),-6px_-6px_18px_rgba(255,255,255,0.035)]">
-        <div className="relative rounded-[22px] overflow-hidden min-h-[220px] flex flex-col justify-end p-6 sm:p-10">
-          <div className="absolute inset-0">
+      {/* Top Banner with Image */}
+      <section className="relative overflow-hidden rounded-3xl bg-[#090d16] border border-slate-800 shadow-xl">
+        <div className="relative overflow-hidden min-h-[220px] flex flex-col justify-end p-6 sm:p-10">
+          <div className="absolute inset-0 pointer-events-none">
             <img
               src="/src/assets/images/athlit_recovery_lab_1790658120900.jpg"
               alt="Elite recovery science lounge"
               referrerPolicy="no-referrer"
-              className="h-full w-full object-cover opacity-30 filter brightness-90 contrast-115"
+              className="h-full w-full object-cover opacity-35 filter brightness-105 contrast-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#161a22] via-[#161a22]/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-[#090d16]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#090d16] via-[#090d16]/85 to-transparent" />
           </div>
 
           <div className="relative z-10">
-            <div className="text-xs font-semibold text-lime-400 uppercase tracking-wider mb-1 drop-shadow-[0_0_8px_rgba(163,230,53,0.3)]">
+            <div className="text-xs font-bold text-lime-400 uppercase tracking-wider mb-1.5">
               Autonomic & Physiological Recovery Science
             </div>
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-white drop-shadow-sm">
+            <h1 className="text-2xl sm:text-4xl font-black text-white">
               Daily Physiological Readiness & Adaptation Hub
             </h1>
-            <p className="text-xs sm:text-sm text-neutral-300 mt-2 max-w-xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-200 mt-2 max-w-xl leading-relaxed">
               Input nocturnal HRV, resting pulse, and acute workload metrics to determine autonomic nervous balance and exact training intensity ceilings.
             </p>
           </div>
@@ -140,19 +141,19 @@ export const RecoveryLabView: React.FC = () => {
         
         {/* Left Column: Daily Biometric Assessment Inputs (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="neu-card rounded-3xl p-6 sm:p-7 space-y-5 shadow-[8px_8px_24px_rgba(0,0,0,0.7),-6px_-6px_18px_rgba(255,255,255,0.035)]">
-            <div className="flex items-center justify-between border-b border-black/40 pb-3">
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+          <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-7 space-y-5 shadow-xs">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
                 Morning Biometric Inputs
               </h3>
-              <span className="neu-btn px-2.5 py-0.5 rounded-md text-xs text-lime-400 font-mono font-semibold">Today's Check-in</span>
+              <span className="px-2.5 py-0.5 rounded-md bg-lime-50 text-lime-800 border border-lime-200 text-xs font-mono font-semibold">Today's Check-in</span>
             </div>
 
             {/* Resting Heart Rate */}
             <div>
-              <div className="flex justify-between text-xs font-semibold text-neutral-300 mb-1.5">
+              <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
                 <span>Resting Heart Rate (Waking)</span>
-                <span className="font-mono text-red-400 tabular-nums">{restingHeartRate} bpm</span>
+                <span className="font-mono text-rose-600 font-bold tabular-nums">{restingHeartRate} bpm</span>
               </div>
               <input
                 type="range"
@@ -160,9 +161,9 @@ export const RecoveryLabView: React.FC = () => {
                 max="85"
                 value={restingHeartRate}
                 onChange={(e) => setRestingHeartRate(Number(e.target.value))}
-                className="w-full"
+                className="w-full accent-lime-600"
               />
-              <div className="flex justify-between text-[10px] text-neutral-500 font-mono mt-1">
+              <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                 <span>35 bpm (Elite Bradycardia)</span>
                 <span>85 bpm</span>
               </div>
@@ -170,9 +171,9 @@ export const RecoveryLabView: React.FC = () => {
 
             {/* HRV (rMSSD) */}
             <div>
-              <div className="flex justify-between text-xs font-semibold text-neutral-300 mb-1.5">
+              <div className="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
                 <span>Heart Rate Variability (rMSSD)</span>
-                <span className="font-mono text-emerald-400 tabular-nums">{hrv} ms</span>
+                <span className="font-mono text-emerald-700 font-bold tabular-nums">{hrv} ms</span>
               </div>
               <input
                 type="range"
@@ -180,9 +181,9 @@ export const RecoveryLabView: React.FC = () => {
                 max="140"
                 value={hrv}
                 onChange={(e) => setHrv(Number(e.target.value))}
-                className="w-full"
+                className="w-full accent-lime-600"
               />
-              <div className="flex justify-between text-[10px] text-neutral-500 font-mono mt-1">
+              <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                 <span>20 ms (Sympathetic Strain)</span>
                 <span>140 ms (High Vagal Tone)</span>
               </div>
@@ -191,10 +192,10 @@ export const RecoveryLabView: React.FC = () => {
             {/* Sleep Hours & Quality */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                   Sleep Duration
                 </label>
-                <div className="neu-inset rounded-xl px-3 py-2 flex items-center gap-1.5 font-mono text-xs text-cyan-400">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 flex items-center gap-1.5 font-mono text-xs">
                   <input
                     type="number"
                     step="0.1"
@@ -202,9 +203,9 @@ export const RecoveryLabView: React.FC = () => {
                     max="12"
                     value={sleepHours}
                     onChange={(e) => setSleepHours(Number(e.target.value))}
-                    className="w-full bg-transparent text-xs text-white tabular-nums focus:outline-none"
+                    className="w-full bg-transparent text-xs text-slate-900 font-bold tabular-nums focus:outline-none"
                   />
-                  <span className="text-neutral-400">hrs</span>
+                  <span className="text-slate-500 font-medium">hrs</span>
                 </div>
               </div>
 
@@ -320,30 +321,30 @@ export const RecoveryLabView: React.FC = () => {
         {/* Right Column: AI Physiological Readiness & Protocols (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
           {readinessData && (
-            <div className="neu-card rounded-3xl p-6 sm:p-8 space-y-6 shadow-[8px_8px_24px_rgba(0,0,0,0.7),-6px_-6px_18px_rgba(255,255,255,0.035)]">
+            <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-8 space-y-6 shadow-xs">
               
               {/* Main Score Header */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/40 pb-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
                 <div>
-                  <div className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-1">
+                  <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
                     Computed Daily Readiness
                   </div>
-                  <h2 className="text-2xl font-extrabold text-white drop-shadow-sm">
+                  <h2 className="text-2xl font-black text-slate-950">
                     {readinessData.readinessStatus}
                   </h2>
-                  <div className="text-xs text-lime-400 font-semibold mt-1">
+                  <div className="text-xs text-lime-700 font-bold mt-1">
                     {readinessData.autonomicStatus}
                   </div>
                 </div>
 
-                <div className="neu-inset px-5 py-3.5 rounded-2xl flex flex-col items-center">
+                <div className="rounded-2xl bg-slate-50 border border-slate-200 px-5 py-3.5 flex flex-col items-center">
                   <div className="flex items-baseline gap-1">
-                    <span className="font-mono text-5xl font-black text-white tabular-nums drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                    <span className="font-mono text-5xl font-black text-slate-950 tabular-nums">
                       {readinessData.readinessScore}
                     </span>
-                    <span className="text-sm text-neutral-400 font-mono">/ 100</span>
+                    <span className="text-sm text-slate-500 font-mono">/ 100</span>
                   </div>
-                  <span className="text-[10px] text-lime-400 uppercase font-mono font-bold mt-0.5">
+                  <span className="text-[10px] text-lime-800 uppercase font-mono font-bold mt-0.5">
                     Systemic Readiness
                   </span>
                 </div>
@@ -351,36 +352,36 @@ export const RecoveryLabView: React.FC = () => {
 
               {/* Prescribed Training Thresholds */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="neu-inset-subtle p-4 rounded-2xl space-y-1">
-                  <span className="text-xs font-semibold text-neutral-400">Prescribed Intensity Ceiling</span>
-                  <div className="text-sm font-bold text-white">
+                <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 space-y-1">
+                  <span className="text-xs font-semibold text-slate-500">Prescribed Intensity Ceiling</span>
+                  <div className="text-sm font-bold text-slate-900">
                     {readinessData.maxIntensityRecommended}
                   </div>
                 </div>
 
-                <div className="neu-inset-subtle p-4 rounded-2xl space-y-1">
-                  <span className="text-xs font-semibold text-neutral-400">Suggested Volume Scaling</span>
-                  <div className="text-sm font-bold text-lime-400 font-mono tabular-nums">
+                <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 space-y-1">
+                  <span className="text-xs font-semibold text-slate-500">Suggested Volume Scaling</span>
+                  <div className="text-sm font-bold text-lime-700 font-mono tabular-nums">
                     {readinessData.volumeAdjustmentPercent}% of Standard Baseline
                   </div>
                 </div>
               </div>
 
-              {/* Workload Safety (ACWR) in recessed pod */}
-              <div className="neu-inset p-4 rounded-2xl text-xs text-neutral-300 space-y-1">
-                <span className="font-bold text-cyan-400">Workload & ACWR Assessment: </span>
+              {/* Workload Safety (ACWR) */}
+              <div className="rounded-2xl bg-cyan-50/70 border border-cyan-200/70 p-4 text-xs text-slate-800 space-y-1">
+                <strong className="font-bold text-cyan-900">Workload & ACWR Assessment: </strong>
                 <span>{readinessData.acwrSafetyAssessment}</span>
               </div>
 
               {/* Key Physiological Findings */}
               <div className="space-y-2.5">
-                <div className="text-xs font-bold text-white uppercase tracking-wider">
+                <div className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                   Key Physiological Findings
                 </div>
                 <div className="space-y-2">
                   {readinessData.keyPhysiologicalFindings.map((finding, idx) => (
-                    <div key={idx} className="neu-inset-subtle p-3 rounded-xl flex items-start gap-2 text-xs text-neutral-300">
-                      <span className="text-lime-400 font-bold">›</span>
+                    <div key={idx} className="rounded-xl border border-slate-100 bg-slate-50/70 p-3 flex items-start gap-2 text-xs text-slate-700">
+                      <span className="text-lime-700 font-bold">›</span>
                       <span className="leading-relaxed">{finding}</span>
                     </div>
                   ))}
@@ -389,19 +390,19 @@ export const RecoveryLabView: React.FC = () => {
 
               {/* Recommended Evidence-Based Recovery Protocols */}
               <div className="space-y-3">
-                <div className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
-                  <Activity className="h-3.5 w-3.5 text-lime-400" />
+                <div className="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                  <Activity className="h-3.5 w-3.5 text-lime-700" />
                   <span>Targeted Recovery Interventions</span>
                 </div>
                 <div className="space-y-2.5">
                   {readinessData.recoveryProtocols.map((protocol, idx) => (
-                    <div key={idx} className="neu-card-sm p-4 rounded-2xl text-xs space-y-1.5">
+                    <div key={idx} className="rounded-2xl border border-slate-200 bg-slate-50/80 p-4 text-xs space-y-1.5">
                       <div className="flex items-center justify-between">
-                        <span className="font-bold text-white">{protocol.intervention}</span>
-                        <span className="neu-btn px-2.5 py-0.5 rounded text-[11px] font-mono text-neutral-400 font-semibold">{protocol.timing}</span>
+                        <span className="font-bold text-slate-900">{protocol.intervention}</span>
+                        <span className="rounded-md bg-white border border-slate-200 px-2.5 py-0.5 text-[11px] font-mono text-slate-600 font-semibold">{protocol.timing}</span>
                       </div>
-                      <p className="text-neutral-400 text-[11px] leading-relaxed">
-                        <span className="text-neutral-300 font-semibold">Mechanism: </span>
+                      <p className="text-slate-600 text-[11px] leading-relaxed">
+                        <strong className="text-slate-800 font-semibold">Mechanism: </strong>
                         {protocol.physiologicalMechanism}
                       </p>
                     </div>
@@ -410,8 +411,8 @@ export const RecoveryLabView: React.FC = () => {
               </div>
 
               {/* Nutrition & Glycogen Timing */}
-              <div className="neu-inset rounded-2xl p-4 text-xs text-neutral-300 space-y-1">
-                <span className="font-bold text-white">Fueling & Electrolyte Optimization: </span>
+              <div className="rounded-2xl bg-lime-50/70 border border-lime-200/70 p-4 text-xs text-slate-800 space-y-1">
+                <strong className="font-bold text-lime-900">Fueling & Electrolyte Optimization: </strong>
                 <span className="leading-relaxed">{readinessData.nutritionHydrationTiming}</span>
               </div>
 

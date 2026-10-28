@@ -107,10 +107,10 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
   return (
     <div className="space-y-6 pb-12 max-w-5xl mx-auto">
       
-      {/* Coach Header Profile in Neumorphic Card */}
-      <div className="neu-card rounded-3xl p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-[8px_8px_24px_rgba(0,0,0,0.7),-6px_-6px_18px_rgba(255,255,255,0.035)] border border-lime-400/20">
+      {/* Coach Header Profile */}
+      <div className="rounded-3xl bg-white border border-slate-200/90 p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-6 shadow-xs">
         <div className="relative shrink-0">
-          <div className="p-1 rounded-2xl bg-[#111319] shadow-[inset_2px_2px_6px_rgba(0,0,0,0.8)]">
+          <div className="p-1 rounded-2xl bg-slate-950">
             <img
               src="/src/assets/images/athlit_coach_avatar_1790658133388.jpg"
               alt="Coach Techo"
@@ -118,23 +118,23 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
               className="h-20 w-20 rounded-xl object-cover border border-lime-400/50 shadow-md"
             />
           </div>
-          <span className="absolute bottom-1 right-1 h-3.5 w-3.5 rounded-full bg-lime-400 border-2 border-[#161a22] shadow-[0_0_8px_rgba(163,230,53,0.8)]" />
+          <span className="absolute bottom-1 right-1 h-3.5 w-3.5 rounded-full bg-lime-500 border-2 border-white shadow-xs" />
         </div>
 
         <div className="text-center sm:text-left space-y-1">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
-            <h2 className="text-xl font-extrabold text-white drop-shadow-sm">Coach Techo</h2>
-            <span className="neu-btn px-2.5 py-0.5 rounded-lg text-xs text-lime-400 font-mono font-bold">Director of Athletic Performance</span>
+            <h2 className="text-xl font-black text-slate-950">Coach Techo</h2>
+            <span className="px-2.5 py-0.5 rounded-lg bg-lime-50 text-lime-800 border border-lime-200 text-xs font-mono font-bold">Director of Athletic Performance</span>
           </div>
-          <p className="text-xs text-neutral-400 leading-relaxed max-w-2xl pt-1">
+          <p className="text-xs text-slate-600 leading-relaxed max-w-2xl pt-1">
             Olympic-grade training periodization, mitochondrial bioenergetics, and race execution advisor powered by Gemini 3.8 Flash.
           </p>
         </div>
       </div>
 
-      {/* Preset Strategy Questions in Neumorphic Buttons */}
+      {/* Preset Strategy Questions */}
       <div className="space-y-2.5">
-        <span className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
           Suggested Tactical Topics
         </span>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -142,7 +142,7 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
             <button
               key={idx}
               onClick={() => handleSend(q)}
-              className="neu-btn p-3.5 text-left rounded-2xl text-xs text-neutral-300 hover:text-white transition-all line-clamp-1 font-medium"
+              className="p-3.5 text-left rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 text-xs text-slate-700 hover:text-slate-950 transition-all line-clamp-1 font-semibold cursor-pointer shadow-2xs"
             >
               {q}
             </button>
@@ -150,8 +150,8 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
         </div>
       </div>
 
-      {/* Interactive Chat Dialogue Container in Neumorphic Enclosure */}
-      <div className="neu-card rounded-3xl flex flex-col h-[540px] overflow-hidden shadow-[8px_8px_24px_rgba(0,0,0,0.7),-6px_-6px_18px_rgba(255,255,255,0.035)] border border-black/40">
+      {/* Interactive Chat Dialogue Container */}
+      <div className="rounded-3xl bg-white border border-slate-200/90 flex flex-col h-[540px] overflow-hidden shadow-xs">
         
         {/* Messages Feed */}
         <div className="flex-1 p-5 sm:p-6 overflow-y-auto space-y-5 scrollbar-thin">
@@ -166,8 +166,8 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
                 <div
                   className={`h-9 w-9 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold ${
                     isCoach
-                      ? 'neu-btn-primary font-mono'
-                      : 'neu-btn text-white'
+                      ? 'bg-lime-500 text-slate-950 font-black'
+                      : 'bg-slate-900 text-white'
                   }`}
                 >
                   {isCoach ? 'AI' : <User className="h-4 w-4" />}
@@ -177,22 +177,22 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
                 <div
                   className={`max-w-[85%] sm:max-w-[75%] rounded-2xl p-4 text-xs leading-relaxed ${
                     isCoach
-                      ? 'neu-inset text-neutral-200 border border-black/50'
-                      : 'neu-btn-primary text-neutral-950 font-semibold'
+                      ? 'bg-slate-50 border border-slate-200 text-slate-800'
+                      : 'bg-slate-900 text-white font-medium shadow-sm'
                   }`}
                 >
                   <div className="whitespace-pre-wrap">{msg.content}</div>
 
                   {isCoach && (
-                    <div className="mt-3 pt-2.5 border-t border-black/40 flex items-center justify-between text-[11px] text-neutral-400">
+                    <div className="mt-3 pt-2.5 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
                       <span>Coach Techo · Sports Science</span>
                       <button
                         onClick={() => handleSpeak(msg)}
-                        className={`neu-btn px-2.5 py-1 rounded-lg flex items-center gap-1 transition-colors ${
-                          isSpeakingId === msg.id ? 'text-lime-400 font-bold' : 'hover:text-white'
+                        className={`px-2.5 py-1 rounded-lg border border-slate-200 bg-white flex items-center gap-1 transition-colors text-slate-700 hover:text-slate-950 ${
+                          isSpeakingId === msg.id ? 'text-lime-700 font-bold border-lime-300' : ''
                         }`}
                       >
-                        <Volume2 className="h-3.5 w-3.5 text-lime-400" />
+                        <Volume2 className="h-3.5 w-3.5 text-lime-600" />
                         <span>{isSpeakingId === msg.id ? 'Playing...' : 'Audio Coach'}</span>
                       </button>
                     </div>
@@ -204,11 +204,11 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
 
           {isLoading && (
             <div className="flex items-center gap-3">
-              <div className="neu-btn-primary h-9 w-9 rounded-xl font-mono flex items-center justify-center font-bold text-xs">
+              <div className="bg-lime-500 text-slate-950 h-9 w-9 rounded-xl font-black flex items-center justify-center text-xs">
                 AI
               </div>
-              <div className="neu-inset rounded-2xl p-4 text-xs text-neutral-400 flex items-center gap-2">
-                <RefreshCw className="h-3.5 w-3.5 animate-spin text-lime-400" />
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600 flex items-center gap-2">
+                <RefreshCw className="h-3.5 w-3.5 animate-spin text-lime-600" />
                 <span>Coach Techo is formulating tactical recommendations...</span>
               </div>
             </div>
@@ -217,8 +217,8 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Form with Neumorphic Well */}
-        <div className="p-4 border-t border-black/40 bg-[#12141a]/90">
+        {/* Input Form with Clean Field */}
+        <div className="p-4 border-t border-slate-200 bg-slate-50">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -231,15 +231,15 @@ export const CoachConsultView: React.FC<CoachConsultViewProps> = ({ athlete }) =
               value={inputQuestion}
               onChange={(e) => setInputQuestion(e.target.value)}
               placeholder="Ask about workout pacing, lactate thresholds, carb loading, or deload phases..."
-              className="neu-inset flex-1 rounded-2xl px-4 py-3 text-xs text-white placeholder-neutral-500 focus:outline-none"
+              className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-400 shadow-2xs"
             />
             <button
               type="submit"
               disabled={isLoading || !inputQuestion.trim()}
-              className="neu-btn-primary rounded-2xl p-3.5 disabled:opacity-40"
+              className="rounded-xl bg-lime-500 hover:bg-lime-400 text-slate-950 p-3.5 disabled:opacity-40 transition-all font-bold cursor-pointer"
               title="Send question to Coach"
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-4 w-4 stroke-[2.5]" />
             </button>
           </form>
         </div>

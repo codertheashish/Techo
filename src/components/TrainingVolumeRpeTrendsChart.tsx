@@ -314,25 +314,25 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
   };
 
   return (
-    <section className="neu-card rounded-3xl p-6 sm:p-7 space-y-6">
+    <section className="rounded-3xl bg-[#090d16] border border-slate-800 p-6 sm:p-7 space-y-6 shadow-xl text-white">
       
       {/* Header & Meta Row */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-black/40 pb-5">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800 pb-5">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="neu-btn px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold text-lime-400 tracking-wider uppercase">
+            <span className="px-2.5 py-0.5 rounded-md bg-lime-500/10 border border-lime-500/20 text-[11px] font-mono font-bold text-lime-400 tracking-wider uppercase">
               30-Day Periodization Telemetry
             </span>
-            <span className="text-neutral-500 text-xs">·</span>
-            <span className="text-xs text-neutral-400 font-mono">Volume & Exertion Dynamics</span>
+            <span className="text-slate-500 text-xs">·</span>
+            <span className="text-xs text-slate-400 font-mono">Volume & Exertion Dynamics</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight drop-shadow-sm flex items-center gap-2.5">
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2.5">
             <span>Training Volume & RPE Trends</span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-lime-500/10 text-lime-400 border border-lime-500/20">
+            <span className="text-xs font-mono px-2 py-0.5 rounded bg-lime-500/20 text-lime-400 border border-lime-500/30">
               ACWR {stats.calculatedAcwr}
             </span>
           </h2>
-          <p className="text-xs text-neutral-300 mt-1 max-w-2xl leading-relaxed">
+          <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
             Coordinated dual-axis analysis tracking daily session duration (minutes) against Rate of Perceived Exertion (1–10 Borg CR10 scale) across the current 30-day mesocycle.
           </p>
         </div>
@@ -341,13 +341,13 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
         <div className="flex flex-wrap items-center gap-2 self-start lg:self-center">
           
           {/* View Mode Selector */}
-          <div className="neu-inset-subtle p-1 rounded-xl flex items-center gap-1 text-xs">
+          <div className="bg-slate-900/90 border border-slate-800 p-1 rounded-xl flex items-center gap-1 text-xs">
             <button
               onClick={() => setViewMode('dual-axis')}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                 viewMode === 'dual-axis'
-                  ? 'neu-btn text-lime-400 shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
+                  ? 'bg-slate-800 text-lime-400 shadow-sm border border-slate-700'
+                  : 'text-slate-400 hover:text-white'
               }`}
               title="Combined Volume (Bars) and RPE (Line)"
             >
@@ -355,10 +355,10 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
             </button>
             <button
               onClick={() => setViewMode('sport-breakdown')}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                 viewMode === 'sport-breakdown'
-                  ? 'neu-btn text-lime-400 shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
+                  ? 'bg-slate-800 text-lime-400 shadow-sm border border-slate-700'
+                  : 'text-slate-400 hover:text-white'
               }`}
               title="Volume stacked by Sport discipline"
             >
@@ -366,10 +366,10 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
             </button>
             <button
               onClick={() => setViewMode('rpe-zones')}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                 viewMode === 'rpe-zones'
-                  ? 'neu-btn text-lime-400 shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
+                  ? 'bg-slate-800 text-lime-400 shadow-sm border border-slate-700'
+                  : 'text-slate-400 hover:text-white'
               }`}
               title="RPE Exertion Curve & Intensity Thresholds"
             >
@@ -377,10 +377,10 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
             </button>
             <button
               onClick={() => setViewMode('trimp-load')}
-              className={`px-3 py-1.5 rounded-lg font-semibold transition-all ${
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                 viewMode === 'trimp-load'
-                  ? 'neu-btn text-lime-400 shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
+                  ? 'bg-slate-800 text-lime-400 shadow-sm border border-slate-700'
+                  : 'text-slate-400 hover:text-white'
               }`}
               title="TRIMP Workload Impulse accumulation"
             >
@@ -389,23 +389,23 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
           </div>
 
           {/* Granularity Toggle */}
-          <div className="neu-inset-subtle p-1 rounded-xl flex items-center gap-1 text-xs">
+          <div className="bg-slate-900/90 border border-slate-800 p-1 rounded-xl flex items-center gap-1 text-xs">
             <button
               onClick={() => setGranularity('daily')}
-              className={`px-2.5 py-1.5 rounded-lg font-mono text-[11px] font-semibold transition-all ${
+              className={`px-2.5 py-1.5 rounded-lg font-mono text-[11px] font-semibold transition-all cursor-pointer ${
                 granularity === 'daily'
-                  ? 'neu-btn text-white shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
+                  ? 'bg-slate-800 text-white shadow-sm border border-slate-700'
+                  : 'text-slate-400 hover:text-white'
               }`}
             >
               Daily
             </button>
             <button
               onClick={() => setGranularity('rolling-7d')}
-              className={`px-2.5 py-1.5 rounded-lg font-mono text-[11px] font-semibold transition-all ${
+              className={`px-2.5 py-1.5 rounded-lg font-mono text-[11px] font-semibold transition-all cursor-pointer ${
                 granularity === 'rolling-7d'
-                  ? 'neu-btn text-amber-400 shadow-sm'
-                  : 'text-neutral-400 hover:text-white'
+                  ? 'bg-slate-800 text-amber-400 shadow-sm border border-slate-700'
+                  : 'text-slate-400 hover:text-white'
               }`}
               title="7-Day Rolling Moving Average"
             >
@@ -420,29 +420,29 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         
         {/* Total Volume */}
-        <div className="neu-card-sm rounded-2xl p-4">
-          <div className="flex items-center justify-between text-neutral-400 text-xs mb-1">
-            <span className="font-semibold">30-Day Volume</span>
+        <div className="rounded-2xl bg-slate-900/90 border border-slate-800 p-4">
+          <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
+            <span className="font-semibold text-slate-300">30-Day Volume</span>
             <Timer className="h-3.5 w-3.5 text-lime-400" />
           </div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-2xl font-extrabold text-white tabular-nums">{stats.totalHours}</span>
-            <span className="text-xs text-neutral-400 font-mono">hrs</span>
+            <span className="text-xs text-slate-400 font-mono">hrs</span>
           </div>
-          <p className="text-[11px] text-neutral-400 mt-0.5 tabular-nums">
+          <p className="text-[11px] text-slate-400 mt-0.5 tabular-nums">
             {stats.totalSessions} completed sessions
           </p>
         </div>
 
         {/* Average RPE */}
-        <div className="neu-card-sm rounded-2xl p-4">
-          <div className="flex items-center justify-between text-neutral-400 text-xs mb-1">
-            <span className="font-semibold">Mean RPE Exertion</span>
+        <div className="rounded-2xl bg-slate-900/90 border border-slate-800 p-4">
+          <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
+            <span className="font-semibold text-slate-300">Mean RPE Exertion</span>
             <Flame className="h-3.5 w-3.5 text-amber-400" />
           </div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-2xl font-extrabold text-white tabular-nums">{stats.meanRpe}</span>
-            <span className="text-xs text-neutral-400 font-mono">/ 10</span>
+            <span className="text-xs text-slate-400 font-mono">/ 10</span>
           </div>
           <p className="text-[11px] text-amber-400 font-medium mt-0.5 truncate">
             {Number(stats.meanRpe) >= 7 ? 'High Load Surge' : 'Sub-Threshold Tempo'}
@@ -450,29 +450,29 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
         </div>
 
         {/* High Intensity vs Polarized Balance */}
-        <div className="neu-card-sm rounded-2xl p-4">
-          <div className="flex items-center justify-between text-neutral-400 text-xs mb-1">
-            <span className="font-semibold">Threshold+ Days (RPE 8-10)</span>
+        <div className="rounded-2xl bg-slate-900/90 border border-slate-800 p-4">
+          <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
+            <span className="font-semibold text-slate-300">Threshold+ Days</span>
             <TrendingUp className="h-3.5 w-3.5 text-rose-400" />
           </div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-2xl font-extrabold text-rose-400 tabular-nums">{stats.highIntensitySessions}</span>
-            <span className="text-xs text-neutral-400 font-mono">sessions</span>
+            <span className="text-xs text-slate-400 font-mono">sessions</span>
           </div>
-          <p className="text-[11px] text-neutral-400 mt-0.5 tabular-nums">
+          <p className="text-[11px] text-slate-400 mt-0.5 tabular-nums">
             {Math.round((stats.highIntensitySessions / stats.totalSessions) * 100)}% high-strain density
           </p>
         </div>
 
         {/* Acute:Chronic Workload Ratio */}
-        <div className="neu-card-sm rounded-2xl p-4">
-          <div className="flex items-center justify-between text-neutral-400 text-xs mb-1">
-            <span className="font-semibold">ACWR Workload</span>
+        <div className="rounded-2xl bg-slate-900/90 border border-slate-800 p-4">
+          <div className="flex items-center justify-between text-slate-400 text-xs mb-1">
+            <span className="font-semibold text-slate-300">ACWR Workload</span>
             <Activity className="h-3.5 w-3.5 text-cyan-400" />
           </div>
           <div className="flex items-baseline gap-1.5">
             <span className="text-2xl font-extrabold text-cyan-400 tabular-nums">{stats.calculatedAcwr}</span>
-            <span className="text-xs text-neutral-400 font-mono">ratio</span>
+            <span className="text-xs text-slate-400 font-mono">ratio</span>
           </div>
           <p className="text-[11px] text-lime-400 font-medium mt-0.5">
             Optimal Safe Zone (0.8–1.3)
@@ -538,7 +538,7 @@ export const TrainingVolumeRpeTrendsChart: React.FC<TrainingVolumeRpeTrendsChart
       </div>
 
       {/* Main Chart Visualization Chamber */}
-      <div className="neu-inset rounded-2xl p-4 sm:p-5 relative overflow-hidden">
+      <div className="rounded-2xl bg-[#0d121f] border border-slate-800 p-4 sm:p-5 relative overflow-hidden">
         
         {/* Subtle Watermark Branding */}
         <div className="absolute top-4 right-6 text-[10px] font-mono text-neutral-600 uppercase tracking-widest select-none pointer-events-none">
